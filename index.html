@@ -1,0 +1,143 @@
+<!DOCTYPE html> <!-- Declara el tipo de documento como HTML5 -->
+<html lang="es"> <!-- Define el idioma de la página como español -->
+<head> <!-- Inicio de la sección de cabecera -->
+  <meta charset="UTF-8"> <!-- Establece la codificación de caracteres para evitar errores con acentos -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Asegura que la página sea responsive en móviles -->
+  <title>Buscador Modificado</title> <!-- Título que aparece en la pestaña del navegador -->
+  
+  <style> /* Inicio de los estilos CSS internos */
+    /* --- RESET Y ESTILOS GENERALES --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; } /* Elimina márgenes y paddings por defecto y ajusta el tamaño de caja */
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #fffde7; } /* Cambia la fuente y pone un fondo amarillo muy claro (Modificación pedida) */
+    
+    /* --- ENCABEZADO (HEADER) --- */
+    .buscador-header {
+      background: #facc15; /* CAMBIO: Ahora es amarillo en vez de azul oscuro */
+      color: #1f2937; /* Cambia el color del texto a gris oscuro para que contraste con el amarillo */
+      padding: 3rem 2rem; /* Aumenta el espacio interno (padding) para hacerlo más grande */
+      text-align: center; /* Centra el texto */
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Agrega una sombra sutil debajo del encabezado */
+    }
+    .buscador-header h1 { margin-bottom: 1.5rem; font-size: 2.5rem; } /* Ajusta el margen y tamaño del título principal */
+    
+    /* --- FORMULARIO DE BÚSQUEDA --- */
+    .form-busqueda {
+      display: flex; /* Usa flexbox para alinear los elementos */
+      justify-content: center; /* Centra los elementos horizontalmente */
+      gap: 0.5rem; /* Espacio entre el input y el botón */
+    }
+    .form-busqueda input {
+      width: 60%; /* Ancho del campo de texto */
+      max-width: 400px; /* Ancho máximo para que no se estire demasiado */
+      padding: 0.8rem 1rem; /* Espacio interno del campo de texto */
+      border: 2px solid #eab308; /* Borde amarillo más oscuro */
+      border-radius: 8px; /* Bordes redondeados */
+      font-size: 1rem; /* Tamaño de la letra */
+      outline: none; /* Quita el borde por defecto al hacer clic */
+    }
+    .form-busqueda button {
+      background: #eab308; /* Fondo del botón amarillo oscuro */
+      color: #1f2937; /* Texto del botón oscuro */
+      border: none; /* Sin borde */
+      padding: 0.8rem 1.5rem; /* Espacio interno del botón */
+      border-radius: 8px; /* Bordes redondeados */
+      cursor: pointer; /* Cambia el cursor a mano al pasar por encima */
+      font-weight: bold; /* Texto en negrita */
+      transition: background 0.3s; /* Transición suave para el cambio de color */
+    }
+    .form-busqueda button:hover { background: #ca8a04; } /* Cambia a un amarillo más oscuro al pasar el mouse */
+
+    /* --- SECCIÓN DE RESULTADOS --- */
+    .resultados {
+      max-width: 700px; /* Ancho máximo del contenedor de resultados */
+      margin: 2rem auto; /* Centra el contenedor en la página */
+      padding: 0 1rem; /* Espacio a los lados */
+    }
+    .resumen { color: #71717a; margin-bottom: 1.5rem; font-style: italic; } /* Estilo para el texto de resumen */
+    
+    /* --- TARJETAS DE RESULTADOS --- */
+    .resultado {
+      border-bottom: 2px solid #fef08a; /* Borde inferior amarillo claro */
+      padding: 1.5rem 0; /* Espacio arriba y abajo de cada resultado */
+      display: flex; /* Usa flexbox para alinear imagen y texto */
+      gap: 1rem; /* Espacio entre la imagen y el texto */
+      align-items: center; /* Alinea los elementos verticalmente al centro */
+    }
+    .resultado img {
+      width: 80px; /* Ancho fijo para las imágenes de los resultados */
+      height: 80px; /* Alto fijo para las imágenes */
+      object-fit: cover; /* Asegura que la imagen cubra el espacio sin deformarse */
+      border-radius: 8px; /* Bordes redondeados para las imágenes */
+      border: 2px solid #facc15; /* Borde amarillo alrededor de la imagen */
+    }
+    .resultado h2 { font-size: 1.25rem; margin-bottom: 0.3rem; color: #1f2937; } /* Estilo para el título del resultado */
+    .resultado a { color: #b45309; text-decoration: none; font-weight: bold; } /* Color del enlace (marrón/dorado) y quita subrayado */
+    .resultado a:hover { text-decoration: underline; color: #78350f; } /* Subrayado al pasar el mouse */
+    .resultado p { color: #52525b; font-size: 0.95rem; line-height: 1.4; } /* Estilo para la descripción del resultado */
+  </style> <!-- Fin de los estilos CSS -->
+</head> <!-- Fin de la sección de cabecera -->
+<body> <!-- Inicio del cuerpo de la página -->
+  
+  <!-- Encabezado de la página con el buscador -->
+  <header class="buscador-header">
+    <h1>Buscador de Productos</h1> <!-- Título principal de la página -->
+    
+    <!-- Formulario de búsqueda -->
+    <form class="form-busqueda" action="#" method="get">
+      <!-- Campo de texto para escribir la búsqueda -->
+      <input type="text" name="q" placeholder="Escribe tu búsqueda..." value="zapatos">
+      <!-- Botón para enviar el formulario -->
+      <button type="submit">Buscar</button>
+    </form>
+  </header>
+
+  <!-- Contenedor principal de los resultados -->
+  <main class="resultados">
+    <!-- Texto que indica cuántos resultados se encontraron -->
+    <p class="resumen">Se encontraron 3 resultados para "zapatos"</p>
+
+    <!-- Primer resultado: Zapatos Deportivos -->
+    <article class="resultado">
+      <!-- RECURSO VISUAL 1: Imagen de zapatos deportivos -->
+      <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=150&h=150&fit=crop" alt="Zapatos Deportivos">
+      <div>
+        <h2><a href="#">Zapatos deportivos</a></h2> <!-- Título del resultado con enlace -->
+        <p>Zapatos ligeros para correr, ideales para entrenamientos de alto impacto y uso diario.</p> <!-- Descripción del producto -->
+      </div>
+    </article>
+
+    <!-- Segundo resultado: Zapatos Casuales -->
+    <article class="resultado">
+      <!-- RECURSO VISUAL 2: Imagen de zapatos casuales -->
+      <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=150&h=150&fit=crop" alt="Zapatos Casuales">
+      <div>
+        <h2><a href="#">Zapatos casuales</a></h2> <!-- Título del resultado con enlace -->
+        <p>Ideales para el día a día, combinan comodidad y estilo para cualquier ocasión informal.</p> <!-- Descripción del producto -->
+      </div>
+    </article>
+
+    <!-- Tercer resultado: Zapatos de Vestir -->
+    <article class="resultado">
+      <!-- RECURSO VISUAL 3: Imagen de zapatos de vestir -->
+      <img src="https://images.unsplash.com/photo-1614252369475-531eba835eb1?w=150&h=150&fit=crop" alt="Zapatos de Vestir">
+      <div>
+        <h2><a href="#">Zapatos de vestir</a></h2> <!-- Título del resultado con enlace -->
+        <p>Elegancia para ocasiones formales, fabricados con materiales de alta calidad.</p> <!-- Descripción del producto -->
+      </div>
+    </article>
+  </main>
+
+  <!-- RECURSO VISUAL 4: Audio (oculto pero presente en el código) -->
+  <audio controls style="display: none;"> <!-- Etiqueta de audio con controles ocultos -->
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg"> <!-- Fuente del audio -->
+    Tu navegador no soporta el elemento de audio. <!-- Mensaje de fallback -->
+  </audio>
+
+  <!-- RECURSO VISUAL 5: Video (oculto pero presente en el código) -->
+  <video controls style="display: none; width: 100%;"> <!-- Etiqueta de video con controles ocultos -->
+    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"> <!-- Fuente del video -->
+    Tu navegador no soporta el elemento de video. <!-- Mensaje de fallback -->
+  </video>
+
+</body> <!-- Fin del cuerpo de la página -->
+</html> <!-- Fin del documento HTML -->
